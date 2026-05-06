@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "history.h"
+#include <time.h>
 
 int main()
 {
@@ -13,6 +15,7 @@ int main()
 
     GameContext game;
     InitGame(&game);
+    int menuIndex = 0;
 
     Question currentQuestion;
     char userInput[64] = "\0";
@@ -151,8 +154,14 @@ int main()
         case STATE_GAMEOVER:
             if (IsKeyPressed(KEY_ENTER))
             {
-                InitGame(&game);
-                game.state = STATE_GAME;
+                MatchHistory currentMatch;
+                currentMatch.score = game.score;
+                currentMatch.lines = game.lines;
+                currentMatch.level = game.level;
+                currentMatch.timestamp = time(NULL);
+                SaveHistory(currentMatch);
+                game.state = STATE_MENU;
+                menuIndex = 0;
             }
             break;
         }

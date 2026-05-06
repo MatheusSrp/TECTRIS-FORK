@@ -56,4 +56,14 @@ typedef struct {
     int cellSize;
 } ScreenConfig;
 
+// Histórico de Partidas
+#define HISTORY_FILE "history.txt"
+
+typedef struct {
+    int score;
+    int lines;
+    int level;
+    long timestamp;
+} MatchHistory;
+
 #endif
