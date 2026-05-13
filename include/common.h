@@ -22,7 +22,8 @@ typedef enum {
     STATE_GAME,
     STATE_PAUSE,
     STATE_QUESTION,
-    STATE_GAMEOVER
+    STATE_GAMEOVER,
+    STATE_HISTORY
 } GameState;
 
 // Estrutura de Posição
@@ -63,7 +64,7 @@ typedef struct {
     int score;
     int lines;
     int level;
-    long timestamp;
+    time_t timestamp;
 } MatchHistory;
 
 #endif

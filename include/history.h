@@ -5,4 +5,6 @@
 
 void SaveHistory(MatchHistory data); // Avisa ao compilador que essa função existe
 
+int LoadHistory(MatchHistory *history, int maxCount);
+
 #endif // Fim da proteção

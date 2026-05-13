@@ -16,6 +16,8 @@ int main()
     GameContext game;
     InitGame(&game);
     int menuIndex = 0;
+    MatchHistory history[10];
+    int historyCount = 0;
 
     Question currentQuestion;
     char userInput[64] = "\0";
@@ -35,7 +37,19 @@ int main()
         {
         case STATE_MENU:
             if (IsKeyPressed(KEY_ENTER))
+            {
+                InitGame(&game);
                 game.state = STATE_GAME;
+            }
+            if (IsKeyPressed(KEY_H)){
+                historyCount = LoadHistory(history, 10);
+                game.state = STATE_HISTORY;
+            }
+            break;
+        
+        case STATE_HISTORY:
+            if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_ESCAPE))
+                game.state = STATE_MENU;
             break;
 
         case STATE_GAME:
@@ -240,6 +254,29 @@ int main()
             DrawText(finalScore, sw / 2 - MeasureText(finalScore, (int)(30 * s)) / 2, (int)(sh * 0.5f), (int)(30 * s), WHITE);
 
             DrawText("Pressione ENTER para tentar novamente", sw / 2 - MeasureText("Pressione ENTER para tentar novamente", (int)(20 * s)) / 2, (int)(sh * 0.7f), (int)(20 * s), LIGHTGRAY);
+        }
+        else if (game.state == STATE_HISTORY)
+        {
+            DrawRectangle(0, 0, sw, sh, (Color){10, 10, 25, 255});
+            DrawText("HISTORICO DE PARTIDAS", sw / 2 - MeasureText("HISTORICO DE PARTIDAS", (int)(35 * s)) / 2, (int)(sh * 0.08f), (int)(35 * s), COLOR_TEXT);
+
+            if (historyCount == 0)
+            {
+                DrawText("Nenhuma partida registrada.", sw / 2 - MeasureText("Nenhuma partida registrada.", (int)(20 * s)) / 2, sh / 2, (int)(20 * s), LIGHTGRAY);
+            }
+            else
+            {
+                for (int i = 0; i < historyCount; i++)
+                {
+                    char line[128];
+                    char dateStr[32];
+                    struct tm *timeInfo = localtime(&history[i].timestamp);
+                    strftime(dateStr, sizeof(dateStr), "%d/%m/%Y %H:%M", timeInfo);
+                    sprintf(line, "%d. Score: %d | Linhas: %d | Nivel: %d | %s", i + 1, history[i].score, history[i].lines, history[i].level, dateStr);
+                    DrawText(line, sw / 2 - MeasureText(line, (int)(16 * s)) / 2, (int)(sh * 0.2f) + i * (int)(35 * s), (int)(16 * s), WHITE);
+                }
+            }
+             DrawText("Pressione ENTER ou ESC para voltar", sw / 2 - MeasureText("Pressione ENTER ou ESC para voltar", (int)(18 * s)) / 2, (int)(sh * 0.9f), (int)(18 * s), LIGHTGRAY);
         }
 
         EndDrawing();
