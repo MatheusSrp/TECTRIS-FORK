@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define MAX_HISTORY_RECORDS 10
+
 typedef struct {
     Color board[BOARD_HEIGHT][BOARD_WIDTH];
     Tetromino currentPiece;
@@ -10,16 +12,18 @@ typedef struct {
     int score;
     int lines;
     int level;
-    int killLineY; // Linha limite (índice de 0 a BOARD_HEIGHT)
+    int killLineY;
     bool gameOver;
     float dropTimer;
     float dropInterval;
     GameState state;
     ScreenConfig screen;
+    
+    MatchHistory history[MAX_HISTORY_RECORDS];
+    int historyCount;
 } GameContext;
 
 // Inicialização e Loop
-void InitGame(GameContext *ctx);
 void UpdateGame(GameContext *ctx, float deltaTime);
 void HandleInput(GameContext *ctx);
 
@@ -39,7 +43,7 @@ Question GetRandomQuestion(int level);
 bool ValidateAnswer(const char* user, const Question* q);
 
 // Renderização
-void DrawGame(GameContext *ctx);
+void DrawGame(GameContext *ctx, int menuIndex);
 void UpdateScreenConfig(GameContext *ctx);
 
 #endif

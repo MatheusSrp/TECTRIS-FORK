@@ -34,8 +34,25 @@ int main()
         switch (game.state)
         {
         case STATE_MENU:
-            if (IsKeyPressed(KEY_ENTER))
-                game.state = STATE_GAME;
+            if (IsKeyPressed(KEY_DOWN)) {
+                menuIndex++;
+                if (menuIndex > 2) menuIndex = 0; // 0: Jogar, 1: Histórico,
+        2: Sair
+            }
+            if (IsKeyPressed(KEY_UP)) {
+                menuIndex--;
+                if (menuIndex < 0) menuIndex = 2;
+            }
+            if (IsKeyPressed(KEY_ENTER)) {
+                if (menuIndex == 0) {
+                    InitGame(&game); // Reinicia o jogo para garantir um novo começo
+                    game.state = STATE_GAME;
+                } else if (menuIndex == 1) {
+                    game.state = STATE_HISTORY; // Vai para a tela de histórico
+                } else if (menuIndex == 2) {
+                    CloseWindow(); // Sai do jogo
+                }
+            }
             break;
 
         case STATE_GAME:
@@ -168,8 +185,8 @@ int main()
 
         // Renderização Centralizada
         BeginDrawing();
-        DrawGame(&game);
-
+        DrawGame(&game, menuIndex);
+        
         float s = game.screen.scale;
         int sw = game.screen.screenWidth;
         int sh = game.screen.screenHeight;

@@ -25,7 +25,7 @@ void UpdateScreenConfig(GameContext *ctx) {
     ctx->screen.offset.y = (ctx->screen.screenHeight - (BOARD_HEIGHT * ctx->screen.cellSize)) / 2.0f;
 }
 
-void DrawGame(GameContext *ctx) {
+void DrawGame(GameContext *ctx, int menuIndex) {
     UpdateScreenConfig(ctx);
     float s = ctx->screen.scale;
     int cs = ctx->screen.cellSize;
@@ -46,7 +46,7 @@ void DrawGame(GameContext *ctx) {
                 DrawRectangleLines((int)(off.x + x * cs + 1), (int)(off.y + y * cs + 1), cs - 2, cs - 2, (Color){255,255,255,30});
             }
         }
-    }
+    }  // ← fecha o for corretamente aqui
     
     // Current Piece
     if (ctx->state == STATE_GAME || ctx->state == STATE_QUESTION) {
@@ -64,7 +64,7 @@ void DrawGame(GameContext *ctx) {
         }
     }
     
-    // Kill Line (Feedback Visual Pulsante)
+    // Kill Line
     int killY = (int)(off.y + (ctx->killLineY * cs));
     float pulse = (sinf(GetTime() * 8.0f) + 1.0f) / 2.0f;
     Color kColor = COLOR_KILLLINE;
@@ -98,4 +98,39 @@ void DrawGame(GameContext *ctx) {
             }
         }
     }
-}
+
+    // Menu
+    int sw = (int)ctx->screen.screenWidth;
+    int sh = (int)ctx->screen.screenHeight;
+
+    if (ctx->state == STATE_MENU) {
+        DrawRectangle(0, 0, sw, sh, (Color){0, 0, 0, 200});
+        DrawText("TECTRIS", sw / 2 - MeasureText("TECTRIS", (int)(70 * s)) / 2, (int)(sh * 0.3f), (int)(70 * s), COLOR_TEXT);
+        DrawText("Aprenda C Jogando", sw / 2 - MeasureText("Aprenda C Jogando", (int)(25 * s)) / 2, (int)(sh * 0.42f), (int)(25 * s), WHITE);
+
+        const char* options[] = {"Jogar", "Analisar Historico", "Sair"};
+        for (int i = 0; i < 3; i++) {
+            Color textColor = (i == menuIndex) ? YELLOW : WHITE;
+            DrawText(options[i], sw / 2 - MeasureText(options[i], (int)(30 * s)) / 2, (int)(sh * 0.55f + i * 40 * s), (int)(30 * s), textColor);
+        }
+    }
+    else if (ctx->state == STATE_HISTORY) {
+        DrawRectangle(0, 0, sw, sh, (Color){15, 15, 30, 240});
+        DrawText("HISTORICO DE PARTIDAS", sw / 2 - MeasureText("HISTORICO DE PARTIDAS", (int)(40 * s)) / 2, (int)(sh * 0.1f), (int)(40 * s), COLOR_TEXT);
+
+        if (ctx->historyCount == 0) {
+            DrawText("Nenhuma partida registrada ainda.", sw / 2 - MeasureText("Nenhuma partida registrada ainda.", (int)(20 * s)) / 2, (int)(sh * 0.4f), (int)(20 * s), LIGHTGRAY);
+        } else {
+            for (int i = 0; i < ctx->historyCount; i++) {
+                char historyEntry[128];
+                sprintf(historyEntry, "Score: %d | Linhas: %d | Nivel: %d | Data: %ld",
+                    ctx->history[i].score,
+                    ctx->history[i].lines,
+                    ctx->history[i].level,
+                    ctx->history[i].timestamp);
+                DrawText(historyEntry, sw / 2 - MeasureText(historyEntry, (int)(20 * s)) / 2, (int)(sh * 0.2f + i * 30 * s), (int)(20 * s), WHITE);
+            }
+        }
+        DrawText("Pressione ENTER para voltar ao Menu", sw / 2 - MeasureText("Pressione ENTER para voltar ao Menu", (int)(20 * s)) / 2, (int)(sh * 0.9f), (int)(20 * s), LIGHTGRAY);
+    }
+} 
