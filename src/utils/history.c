@@ -12,3 +12,23 @@ void SaveHistory(MatchHistory data) {
     fclose(file);
     TraceLog(LOG_INFO, "HISTORY: Partida salva no historico.");
 }
+
+int LoadHistory(MatchHistory *history, int maxCount) {
+    FILE *file = fopen(HISTORY_FILE, "r");
+    if (file == NULL) {
+        TraceLog(LOG_WARNING, "HISTORY: Arquivo de historico nao encontrado");
+        return 0;
+    }
+    int count = 0;
+    while(count < maxCount) {
+        int result = fscanf(file, "%d,%d,%d,%d\n",
+            &history[count].score,
+            &history[count].lines,
+            &history[count].level,
+            &history[count].timestamp);
+        if (result != 4) break;
+        count++;
+    }
+    fclose(file);
+    return count;
+}
