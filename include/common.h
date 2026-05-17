@@ -22,6 +22,7 @@ typedef enum {
     STATE_GAME,
     STATE_PAUSE,
     STATE_QUESTION,
+    STATE_HISTORY,
     STATE_GAMEOVER
 } GameState;
 
@@ -30,6 +31,14 @@ typedef struct {
     int x;
     int y;
 } Pos;
+
+// Estrutura de Histórico de Partida
+typedef struct {
+int score;
+int lines;
+int level;
+long timestamp; // Para registrar a data/hora da partida
+} MatchHistory;
 
 // Estrutura de Tetromino
 typedef struct {
@@ -58,12 +67,5 @@ typedef struct {
 
 // Histórico de Partidas
 #define HISTORY_FILE "history.txt"
-
-typedef struct {
-    int score;
-    int lines;
-    int level;
-    long timestamp;
-} MatchHistory;
 
 #endif

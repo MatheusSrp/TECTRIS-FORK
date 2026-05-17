@@ -36,8 +36,7 @@ int main()
         case STATE_MENU:
             if (IsKeyPressed(KEY_DOWN)) {
                 menuIndex++;
-                if (menuIndex > 2) menuIndex = 0; // 0: Jogar, 1: Histórico,
-        2: Sair
+                if (menuIndex > 2) menuIndex = 0; // 0: Jogar, 1: Histórico, 2: Sair
             }
             if (IsKeyPressed(KEY_UP)) {
                 menuIndex--;
@@ -192,16 +191,7 @@ int main()
         int sh = game.screen.screenHeight;
 
         // Overlays de Estado
-        if (game.state == STATE_MENU)
-        {
-            DrawRectangle(0, 0, sw, sh, (Color){0, 0, 0, 200});
-            DrawText("TECTRIS", sw / 2 - MeasureText("TECTRIS", (int)(70 * s)) / 2, (int)(sh * 0.3f), (int)(70 * s), COLOR_TEXT);
-            DrawText("Aprenda C Jogando", sw / 2 - MeasureText("Aprenda C Jogando", (int)(25 * s)) / 2, (int)(sh * 0.42f), (int)(25 * s), WHITE);
-
-            float blink = (sinf(GetTime() * 5.0f) + 1.0f) / 2.0f;
-            DrawText("Pressione ENTER para iniciar", sw / 2 - MeasureText("Pressione ENTER para iniciar", (int)(20 * s)) / 2, (int)(sh * 0.65f), (int)(20 * s), Fade(COLOR_BORDER, blink));
-        }
-        else if (game.state == STATE_PAUSE)
+        if (game.state == STATE_PAUSE)
         {
             DrawRectangle(0, 0, sw, sh, (Color){0, 0, 0, 160});
             DrawText("PAUSA", sw / 2 - MeasureText("PAUSA", (int)(50 * s)) / 2, sh / 2 - (int)(40 * s), (int)(50 * s), WHITE);
@@ -256,7 +246,7 @@ int main()
             sprintf(finalScore, "PONTUACAO FINAL: %d", game.score);
             DrawText(finalScore, sw / 2 - MeasureText(finalScore, (int)(30 * s)) / 2, (int)(sh * 0.5f), (int)(30 * s), WHITE);
 
-            DrawText("Pressione ENTER para tentar novamente", sw / 2 - MeasureText("Pressione ENTER para tentar novamente", (int)(20 * s)) / 2, (int)(sh * 0.7f), (int)(20 * s), LIGHTGRAY);
+            DrawText("Pressione ENTER para voltar ao menu", sw / 2 - MeasureText("Pressione ENTER para voltar ao menu", (int)(20 * s)) / 2, (int)(sh * 0.7f), (int)(20 * s), LIGHTGRAY);
         }
 
         EndDrawing();
