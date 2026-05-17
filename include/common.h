@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include <time.h>
 
 // Configurações do Grid
 #define BOARD_WIDTH 10
@@ -22,8 +23,8 @@ typedef enum {
     STATE_GAME,
     STATE_PAUSE,
     STATE_QUESTION,
-    STATE_GAMEOVER,
-    STATE_HISTORY
+    STATE_HISTORY,
+    STATE_GAMEOVER
 } GameState;
 
 // Estrutura de Posição
@@ -31,6 +32,14 @@ typedef struct {
     int x;
     int y;
 } Pos;
+
+// Estrutura de Histórico de Partida
+typedef struct {
+    int score;
+    int lines;
+    int level;
+    time_t timestamp;
+} MatchHistory;
 
 // Estrutura de Tetromino
 typedef struct {
@@ -59,12 +68,5 @@ typedef struct {
 
 // Histórico de Partidas
 #define HISTORY_FILE "history.txt"
-
-typedef struct {
-    int score;
-    int lines;
-    int level;
-    time_t timestamp;
-} MatchHistory;
 
 #endif
