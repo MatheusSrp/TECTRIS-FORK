@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include <time.h>
 
 // Configurações do Grid
 #define BOARD_WIDTH 10
@@ -34,10 +35,10 @@ typedef struct {
 
 // Estrutura de Histórico de Partida
 typedef struct {
-int score;
-int lines;
-int level;
-long timestamp; // Para registrar a data/hora da partida
+    int score;
+    int lines;
+    int level;
+    time_t timestamp;
 } MatchHistory;
 
 // Estrutura de Tetromino
