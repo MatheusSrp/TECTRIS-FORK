@@ -79,7 +79,7 @@ As principais entregas incluem:
 ## 4. Planejamento Geral do Projeto
 
 ### 4.1 Cronograma de 6 Semanas
-**Link do Trello:** [Acessar Trello do Projeto Integrado](https://trello.com/b/XpkqB8dX/projeto-integrado)
+**Link do Trello:** [https://trello.com/b/XpkqB8dX/projeto-integrado]
 
 ---
 
@@ -118,10 +118,20 @@ Nesta etapa inicial, a principal dificuldade da equipe foi integrar a lógica in
 ### Semana 2: Acompanhamento Semanal
 **Período:** 18/05/2026 a 22/05/2026
 
-* **5.1 Atividades realizadas:** [Descrever o que a equipe fez durante a semana]
-* **5.2 Decisões tomadas:** [Registrar as principais decisões do grupo]
-* **5.3 Dificuldades encontradas:** [Preencher]
-* **5.4 Próximos passos:** [Preencher]
+**5.1 Atividades realizadas**
+* Realizamos reuniões de alinhamento para planejar as entregas da próxima semana.
+* Devido ao surgimento de novas demandas acadêmicas no mesmo período (trabalho de Lógica e entregas da Residência Tecnológica), ajustamos nosso planejamento e redistribuímos as tarefas entre os integrantes.
+
+**5.2 Decisões tomadas**
+* **Projeto de Lógica:** Após avaliarmos se seria melhor adaptar o nosso jogo atual ou criar um novo, decidimos desenvolver um jogo físico independente e já definimos o seu conteúdo e regras.
+* **Divisão da equipe:** Para dar conta de todas as entregas da semana e evitar atrasos, decidimos dividir a equipe em subgrupos, cada um focado em uma entrega específica.
+
+**5.3 Dificuldades encontradas**
+* O principal desafio da semana foi a gestão do tempo e a sobrecarga de tarefas. Tivemos prazos muito curtos para os trabalhos de Lógica e da Residência, exatamente na mesma semana em que já tínhamos validações do projeto principal (TeCtris) com três professores diferentes. Isso dificultou bastante a organização e a priorização do que deveria ser feito primeiro.
+
+**5.4 Próximos passos**
+* Concluir e entregar as soluções da disciplina de Lógica e da Residência Tecnológica dentro dos prazos.
+* Após essas entregas, retomar o foco total da equipe para o desenvolvimento, testes e finalização do projeto TeCtris.
 
 ---
 
