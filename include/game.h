@@ -24,6 +24,7 @@ typedef struct {
 } GameContext;
 
 // Inicialização e Loop
+void InitGame(GameContext *ctx);
 void UpdateGame(GameContext *ctx, float deltaTime);
 void HandleInput(GameContext *ctx);
 
