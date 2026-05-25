@@ -108,12 +108,20 @@ void DrawGame(GameContext *ctx, int menuIndex) {
         DrawText("TECTRIS", sw / 2 - MeasureText("TECTRIS", (int)(70 * s)) / 2, (int)(sh * 0.3f), (int)(70 * s), COLOR_TEXT);
         DrawText("Aprenda C Jogando", sw / 2 - MeasureText("Aprenda C Jogando", (int)(25 * s)) / 2, (int)(sh * 0.42f), (int)(25 * s), WHITE);
 
-        const char* options[] = {"Jogar", "Analisar Historico", "Sair"};
-        for (int i = 0; i < 3; i++) {
+        const char* options[] = {"Jogar", "Analisar Historico", "Analisar Estatisticas", "Sair"};
+        for (int i = 0; i < 4; i++) {
             Color textColor = (i == menuIndex) ? YELLOW : WHITE;
             DrawText(options[i], sw / 2 - MeasureText(options[i], (int)(30 * s)) / 2, (int)(sh * 0.55f + i * 40 * s), (int)(30 * s), textColor);
         }
     }
+
+    else if (ctx->state == STATE_REPORT) {
+        DrawRectangle(0, 0, sw, sh, (Color){15, 15, 30, 240});
+        DrawText("RELATORIO ANALITICO", sw / 2 - MeasureText("RELATORIO ANALITICO", (int)(40 * s)) / 2, (int)(sh * 0.1f), (int)(40 * s), COLOR_TEXT);
+        DrawText("Carregando dados...", sw / 2 - MeasureText("Carregando dados...", (int)(20 * s)) / 2, (int)(sh * 0.4f), (int)(20 * s), LIGHTGRAY);
+        DrawText("Pressione ENTER ou ESC para voltar ao Menu", sw / 2 - MeasureText("Pressione ENTER ou ESC para voltar ao Menu", (int)(20 * s)) / 2, (int)(sh * 0.9f), (int)(20 * s), LIGHTGRAY);
+    }
+
     else if (ctx->state == STATE_HISTORY) {
         DrawRectangle(0, 0, sw, sh, (Color){15, 15, 30, 240});
         DrawText("HISTORICO DE PARTIDAS", sw / 2 - MeasureText("HISTORICO DE PARTIDAS", (int)(40 * s)) / 2, (int)(sh * 0.1f), (int)(40 * s), COLOR_TEXT);
