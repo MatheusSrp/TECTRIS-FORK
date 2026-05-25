@@ -24,6 +24,7 @@ typedef enum {
     STATE_PAUSE,
     STATE_QUESTION,
     STATE_HISTORY,
+    STATE_REPORT,
     STATE_GAMEOVER
 } GameState;
 
