@@ -16,6 +16,7 @@ set(SOURCES
     src/game/questions.c
     src/render/render.c
     src/utils/history.c
+    src/utils/stats.c
 )
 
 add_executable(Tectris ${SOURCES})

@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Matheus/OneDrive/Desktop/CESAR SCHOOL/Semestre 2/Jogo_Tectris/TECTRIS/src/main.c" "CMakeFiles/Tectris.dir/src/main.c.obj" "gcc" "CMakeFiles/Tectris.dir/src/main.c.obj.d"
   "C:/Users/Matheus/OneDrive/Desktop/CESAR SCHOOL/Semestre 2/Jogo_Tectris/TECTRIS/src/render/render.c" "CMakeFiles/Tectris.dir/src/render/render.c.obj" "gcc" "CMakeFiles/Tectris.dir/src/render/render.c.obj.d"
   "C:/Users/Matheus/OneDrive/Desktop/CESAR SCHOOL/Semestre 2/Jogo_Tectris/TECTRIS/src/utils/history.c" "CMakeFiles/Tectris.dir/src/utils/history.c.obj" "gcc" "CMakeFiles/Tectris.dir/src/utils/history.c.obj.d"
+  "C:/Users/Matheus/OneDrive/Desktop/CESAR SCHOOL/Semestre 2/Jogo_Tectris/TECTRIS/src/utils/stats.c" "CMakeFiles/Tectris.dir/src/utils/stats.c.obj" "gcc" "CMakeFiles/Tectris.dir/src/utils/stats.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -248,6 +248,30 @@ src/utils/history.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tectris.dir\build.make CMakeFiles/Tectris.dir/src/utils/history.c.s
 .PHONY : src/utils/history.c.s
 
+src/utils/stats.obj: src/utils/stats.c.obj
+.PHONY : src/utils/stats.obj
+
+# target to build an object file
+src/utils/stats.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tectris.dir\build.make CMakeFiles/Tectris.dir/src/utils/stats.c.obj
+.PHONY : src/utils/stats.c.obj
+
+src/utils/stats.i: src/utils/stats.c.i
+.PHONY : src/utils/stats.i
+
+# target to preprocess a source file
+src/utils/stats.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tectris.dir\build.make CMakeFiles/Tectris.dir/src/utils/stats.c.i
+.PHONY : src/utils/stats.c.i
+
+src/utils/stats.s: src/utils/stats.c.s
+.PHONY : src/utils/stats.s
+
+# target to generate assembly for a file
+src/utils/stats.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tectris.dir\build.make CMakeFiles/Tectris.dir/src/utils/stats.c.s
+.PHONY : src/utils/stats.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -272,6 +296,9 @@ help:
 	@echo ... src/utils/history.obj
 	@echo ... src/utils/history.i
 	@echo ... src/utils/history.s
+	@echo ... src/utils/stats.obj
+	@echo ... src/utils/stats.i
+	@echo ... src/utils/stats.s
 .PHONY : help
 
 

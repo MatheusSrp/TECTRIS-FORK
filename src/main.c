@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include "history.h"
+#include "stats.h"
 #include <time.h>
 
 int main()
@@ -18,6 +19,8 @@ int main()
     int menuIndex = 0;
     MatchHistory history[10];
     int historyCount = 0;
+    GameStats stats;
+    int scoresArr[10];
 
     Question currentQuestion;
     char userInput[64] = "\0";
@@ -59,8 +62,22 @@ int main()
                 }
 
                 else if (menuIndex == 2) {
+                    historyCount = LoadHistory(history, 10);
+                    
+                    stats.totalMatches = historyCount;
+                    stats.averageScore = CalculateAverageScore(history, historyCount);
+                    stats.bestScore = CalculateBestScore(history, historyCount);
+                    stats.worstScore = CalculateWorstScore(history, historyCount);
+                    stats.standardDeviation = CalculateStandardDeviation(history, historyCount, stats.averageScore);
+                    
+                    for (int i = 0; i < historyCount; i++) {
+                        scoresArr[i] = history[i].score;
+                    }
+                    
+                    GenerateHeuristic(&stats);
                     game.state = STATE_REPORT;
                 }
+
                 else if (menuIndex == 3) {
                     CloseWindow();
                 }
@@ -425,13 +442,44 @@ int main()
                 COLOR_TEXT
             );
 
-            DrawText(
-                "Analise de desempenho em andamento...",
-                sw / 2 - MeasureText("Analise de desempenho em andamento...", (int)(20 * s)) / 2,
-                (int)(sh / 2),
-                (int)(20 * s),
-                WHITE
-            );
+            if (stats.totalMatches == 0)
+            {
+                DrawText(
+                    "Nenhuma partida registrada.",
+                    sw / 2 - MeasureText("Nenhuma partida registrada.", (int)(20 * s)) / 2,
+                    (int)(sh / 2),
+                    (int)(20 * s),
+                    LIGHTGRAY
+                );
+            }
+            else
+            {
+                char buf[128];
+            
+                sprintf(buf, "Partidas jogadas: %d", stats.totalMatches);
+                DrawText(buf, sw / 2 - MeasureText(buf, (int)(20 * s)) / 2,
+                    (int)(sh * 0.25f), (int)(20 * s), WHITE);
+            
+                sprintf(buf, "Media de pontuacao: %.1f", stats.averageScore);
+                DrawText(buf, sw / 2 - MeasureText(buf, (int)(20 * s)) / 2,
+                    (int)(sh * 0.35f), (int)(20 * s), WHITE);
+            
+                sprintf(buf, "Melhor pontuacao: %d", stats.bestScore);
+                DrawText(buf, sw / 2 - MeasureText(buf, (int)(20 * s)) / 2,
+                    (int)(sh * 0.45f), (int)(20 * s), GREEN);
+            
+                sprintf(buf, "Pior pontuacao: %d", stats.worstScore);
+                DrawText(buf, sw / 2 - MeasureText(buf, (int)(20 * s)) / 2,
+                    (int)(sh * 0.55f), (int)(20 * s), RED);
+            
+                sprintf(buf, "Desvio padrao: %.1f", stats.standardDeviation);
+                DrawText(buf, sw / 2 - MeasureText(buf, (int)(20 * s)) / 2,
+                    (int)(sh * 0.65f), (int)(20 * s), YELLOW);
+            
+                DrawText(stats.heuristicMessage,
+                    sw / 2 - MeasureText(stats.heuristicMessage, (int)(18 * s)) / 2,
+                    (int)(sh * 0.75f), (int)(18 * s), LIGHTGRAY);
+            }
 
             DrawText(
                 "Pressione ENTER ou ESC para voltar",

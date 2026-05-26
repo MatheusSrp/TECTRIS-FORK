@@ -81,6 +81,7 @@ CMakeFiles/Tectris.dir/src/main.c.obj: C:/Users/Matheus/OneDrive/Desktop/CESAR\ 
   C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS/include/common.h \
   C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS/include/game.h \
   C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS/include/history.h \
+  C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS/include/stats.h \
   C:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdarg.h \
   C:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdbool.h \
   C:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
@@ -221,6 +222,8 @@ C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS
 C:/mingw64/x86_64-w64-mingw32/include/string.h:
 
 C:/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h:
+
+C:/Users/Matheus/OneDrive/Desktop/CESAR\ SCHOOL/Semestre\ 2/Jogo_Tectris/TECTRIS/include/stats.h:
 
 C:/mingw64/x86_64-w64-mingw32/include/stdarg.h:
 
